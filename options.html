@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8" />
+<style>
+  body { font-family: sans-serif; max-width: 480px; margin: 40px auto; }
+  input { width: 100%; padding: 6px; margin: 8px 0; }
+  button { padding: 6px 14px; }
+  p.note { font-size: 12px; color: #555; }
+</style>
+</head>
+<body>
+  <h2>SiteGuard Options</h2>
+  <label for="vtKey">VirusTotal API Key (free tier)</label>
+  <input type="password" id="vtKey" placeholder="Paste your VT API key" />
+  <button id="save">Save</button>
+  <p id="status"></p>
+  <p class="note">
+    Get a free key at virustotal.com after creating an account. The free tier
+    is rate-limited (4 requests/min, 500/day) — this extension only sends the
+    bare domain name, never full URLs, page content, or cookies.
+  </p>
+  <script src="options.js"></script>
+</body>
+</html>
