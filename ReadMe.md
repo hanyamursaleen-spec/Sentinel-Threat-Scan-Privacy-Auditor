@@ -1,10 +1,10 @@
 # 🛡️ Sentinel: Threat Scan & Privacy Auditor
 
-Sentinel is a lightweight, high-performance Manifest V3 Chrome Extension that audits web page security in real-time. It runs immediate, client-side heuristic phishing analyzes, inspects HTTP response security headers, measures tracking cookie footprint, and checks domains against global blocklists.
+Sentinel is a lightweight, high-performance Manifest V3 Chrome Extension that audits web page security in real-time. It runs immediate, client-side heuristic phishing analyses, inspects HTTP response security headers, measures tracking cookie footprint, and checks domains against global blocklists.
 
 ---
 
-**1. URL Heuristic Analyzer** (`analyzeUrlHeuristics`) — regex/pattern checks
+**1. URL Heuristic Analyser ** (`analyzeUrlHeuristics`) — regex/pattern checks
 against the active tab's URL: IP-literal hosts, punycode, excessive
 subdomains, brand-name/domain mismatches, suspicious TLDs, `http:` on
 login-looking paths, etc. Fully client-side, no network calls, easy to
@@ -13,10 +13,10 @@ extend by adding entries to `URL_HEURISTIC_RULES`.
 **2. Security Header & SSL Auditor** (`auditSecurity`) — fetches the page and
 inspects response headers (CSP, HSTS, X-Frame-Options, etc.) to produce a
 header score. **Important limitation:** browser extension APIs do not expose
-raw TLS certificate fields (issuer, expiry, cipher suite) to JavaScript —
+raw TLS certificate fields (issuer, expiry, cypher suite) to JavaScript —
 this is a deliberate browser security boundary, not a gap in this code. On
 Firefox, `webRequest.getSecurityInfo` provides some connection-level data
-(protocol version, cipher, and certificate metadata) and the code uses it
+(protocol version, cypher, and certificate metadata) and the code uses it
 when available; on Chrome there is no equivalent API, so the popup says so
 explicitly rather than fabricating cert data.
 
@@ -36,7 +36,7 @@ calling on every navigation.
 
 ---
 
-## Permission rationale (for store review / user trust)
+## Permission rationale (for store review/user trust)
 - `webRequest` + `<all_urls>` — required to observe third-party requests.
 - `cookies` — required to enumerate cookie domains for the privacy score.
 - `storage` — stores only your VT API key locally, never synced.
@@ -58,7 +58,7 @@ calling on every navigation.
 ##  Tech Stack & Architecture
 
 * **Manifest V3 Standard** (Fully Chrome compliant)
-* **Service Workers** (Asynchronous background events handling API validation)
+* **Service Workers** (Asynchronous background event handling API validation)
 * **Vanilla JS, HTML5 & Modern CSS3** (With custom responsive security-dashboard styling)
 
 ---
@@ -72,6 +72,7 @@ calling on every navigation.
 2. Navigate to `chrome://extensions/` in Google Chrome.
 3. Turn on **Developer Mode** (top-right toggle switch).
 4. Click **Load unpacked** in the top-left menu.
+5. Select folder: Sentinel-Threat-Scan-Privacy-Auditor.
 
 ---
 
@@ -79,7 +80,7 @@ calling on every navigation.
 
 For robust evaluation of your Sentinel dashboard, test it against these environments:
 * **Normal Web:** Visit `https://github.com` — Expect high security header scores, clean indicators, and active HTTPS validation.
-* **Phishing Heuristics Test:** Open an unsafe IP address template in your browser (e.g., `http://192.168.1.1` or long hypenated login strings) to watch the *Active Heuristic* indicator shift dynamically to **Danger/Suspicious**.
+* **Phishing Heuristics Test:** Open an unsafe IP address template in your browser (e.g., `http://192.168.1.1` or long hyphenated login strings) to watch the *Active Heuristic* indicator shift dynamically to **Danger/Suspicious**.
 * **Tracker Bloat Test:** Open a news blog. Observe the tracker mapper capture third-party ad requests and increase the privacy risk score organically.
 
 ---
